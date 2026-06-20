@@ -37,3 +37,9 @@
 - Learned file reading.
 - Displayed trip details, journals, and expenses together.
 - Improved output formatting.
+
+### Continuous Menu
+
+- Added while loop.
+- Added exit option.
+- Program no longer needs restarting after every action.
