@@ -31,3 +31,12 @@ elif choice=="2":
         file.write(entry+ "\n\n")
     
     print("\nJournal entry saved!")
+
+elif choice=="3":
+    category=input("Expense Category: ")
+    amount=input("Amount: ")
+
+    with open("expenses.txt","a")as file:
+        file.write(f"{category}: {amount}\n")
+
+    print("\nExpense saved successfully")

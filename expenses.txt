@@ -1,0 +1,3 @@
+Food: 300
+Taxi: 450
+Hotel: 1500

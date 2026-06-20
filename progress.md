@@ -25,3 +25,8 @@
 - Learned append mode.
 - Learned elif statements.
 - Learned f-strings.
+
+### Expense Tracker
+
+- Added expense tracking system.
+- Learned how to store multiple expense records.
