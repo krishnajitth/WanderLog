@@ -23,10 +23,15 @@ def add_journal():
     print("\nJournal entry saved!")
 
 def add_expense():
-    category=input("Expense Category: ")
-    amount=input("Amount: ")
-
-    with open("expenses.txt","a")as file:
+    category = input("Expense Category: ")
+    while True:
+        amount = input("Amount: ")
+        try:
+            int(amount)
+            break
+        except ValueError:
+            print("Please enter a valid number!")
+    with open("expenses.txt", "a") as file:
         file.write(f"{category}: {amount}\n")
 
     print("\nExpense saved successfully")

@@ -51,3 +51,10 @@
 - Calculated remaining budget.
 - Improved summary formatting.
 - Added input validation for expense amounts.
+
+### Budget Analysis
+
+- Calculated total spent.
+- Calculated remaining budget.
+- Added input validation for expense amounts.
+- Improved summary formatting.
