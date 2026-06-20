@@ -30,3 +30,10 @@
 
 - Added expense tracking system.
 - Learned how to store multiple expense records.
+
+### Trip Summary
+
+- Added trip summary feature.
+- Learned file reading.
+- Displayed trip details, journals, and expenses together.
+- Improved output formatting.

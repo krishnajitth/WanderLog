@@ -1,4 +1,4 @@
-print("===== WANDERLOG =====")
+print("========== WANDERLOG ==========")
 print("1. Create Trip")
 print("2. Add Journal Entry")
 print("3. Add Expense")
@@ -40,3 +40,26 @@ elif choice=="3":
         file.write(f"{category}: {amount}\n")
 
     print("\nExpense saved successfully")
+
+elif choice=="4":
+    print("\n" + "=" * 35)
+    print("          TRIP SUMMARY")
+    print("=" * 35)
+
+    print("\n TRIP DETAILS")
+    print("-" * 35)
+    with open("trips.txt","r")as file:
+        print(file.read())
+
+    print("\n JOURNAL")
+    print("-" * 35)
+    with open("journal.txt","r")as file:
+        print(file.read())
+
+    print("\n EXPENSES")
+    print("-" * 35)
+    with open("expenses.txt","r")as file:
+        print(file.read())
+
+
+    
