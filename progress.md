@@ -40,6 +40,8 @@
 
 ### Continuous Menu
 
-- Added while loop.
-- Added exit option.
-- Program no longer needs restarting after every action.
+- Added while loop for continuous operation.
+- Added Exit option.
+- Refactored code indentation.
+- Improved usability by eliminating the need to restart after each action.
+
