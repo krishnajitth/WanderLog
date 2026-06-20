@@ -45,3 +45,9 @@
 - Refactored code indentation.
 - Improved usability by eliminating the need to restart after each action.
 
+### Budget Analysis
+
+- Calculated total spent.
+- Calculated remaining budget.
+- Improved summary formatting.
+- Added input validation for expense amounts.

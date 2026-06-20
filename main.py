@@ -38,18 +38,37 @@ def view_summary():
 
     print("\n TRIP DETAILS")
     print("-" * 35)
-    with open("trips.txt","r")as file:
+    with open("trips.txt", "r") as file:
         print(file.read())
 
     print("\n JOURNAL")
     print("-" * 35)
-    with open("journal.txt","r")as file:
+    with open("journal.txt", "r") as file:
         print(file.read())
 
     print("\n EXPENSES")
     print("-" * 35)
-    with open("expenses.txt","r")as file:
-        print(file.read())
+
+    total_spent = 0
+
+    with open("expenses.txt", "r") as file:
+        for line in file:
+            print(line, end="")
+            category, amount = line.strip().split(": ")
+            total_spent += int(amount)
+
+    with open("trips.txt", "r") as file:
+        lines = file.readlines()
+
+    budget = int(lines[3].split(":")[1])
+    remaining = budget - total_spent
+
+    print("-" * 35)
+    print(f"TOTAL SPENT : ₹{total_spent}")
+    print(f"REMAINING   : ₹{remaining}")
+    print("=" * 35)
+
+
 
 
 while True:    
@@ -74,6 +93,10 @@ while True:
 
     elif choice=="4":
         view_summary()
+
+    elif choice=="5":
+        print("\nThank you for using WanderLog!")
+        break
 
 
 
