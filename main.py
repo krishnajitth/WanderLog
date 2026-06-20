@@ -14,11 +14,20 @@ if choice=="1":
     budget=input("Budget: ")
 
     with open("trips.txt","w")as file:
-        file.write("Destination: "+desination+ "\n")
-        file.write("Start Date:"+start_date+ "\n")
-        file.write("Days: "+days+ "\n")
-        file.write("Budget: "+budget+ "\n")
+       file.write(f"Destination: {destination}\n")
+       file.write(f"Start Date: {start_date}\n")
+       file.write(f"Days: {days}\n")
+       file.write(f"Budget: {budget}\n")
 
     print("\nTrip created successfully!")
                    
                    
+elif choice=="2":
+    day=input("Day Number: ")
+    entry=input("Write your experience: ")
+
+    with open("journal.txt","a")as file:
+        file.write("Day "+day+ "\n")
+        file.write(entry+ "\n\n")
+    
+    print("\nJournal entry saved!")

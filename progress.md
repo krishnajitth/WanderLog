@@ -1,6 +1,6 @@
 # WanderLog Progress
 
-## 20 June 2026
+## Day 1 (20 June 2026)
 
 ### Setup
 
@@ -16,3 +16,12 @@
 - Added trip creation
 - Learned file handling
 - Saved trip details to trips.txt
+
+
+
+## Day 2 (21-06-2026)
+
+- Added journal entry system.
+- Learned append mode.
+- Learned elif statements.
+- Learned f-strings.
