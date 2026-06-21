@@ -1,6 +1,10 @@
-for filename in["trips.txt","journal.txt","expenses.txt"]:
+import os
+for filename in["trips.txt","journal.txt","expenses.txt","report.txt"]:
     with open(filename,"a"):
         pass
+
+def pause():
+    input("\nPress Enter to continue...")
 
 def create_trip():
     destination=input("Destination: ")
@@ -13,8 +17,16 @@ def create_trip():
         file.write(f"Start Date: {start_date}\n")
         file.write(f"Days: {days}\n")
         file.write(f"Budget: {budget}\n")
+
+    with open("journal.txt","w"):
+        pass
+    with open("expenses.txt","w"):
+        pass
+    with open("report.txt","w"):
+        pass
     
     print("\nTrip created successfully!")
+    pause()
 
 def add_journal():
     day=input("Day Number: ")
@@ -25,6 +37,7 @@ def add_journal():
         file.write(entry+ "\n\n")
     
     print("\nJournal entry saved!")
+    pause()
 
 def add_expense():
     category = input("Expense Category: ")
@@ -39,49 +52,60 @@ def add_expense():
         file.write(f"{category}: {amount}\n")
 
     print("\nExpense saved successfully")
+    pause()
 
 def view_summary():
-    print("\n" + "=" * 35)
-    print("          TRIP SUMMARY")
-    print("=" * 35)
+    print_header("TRIP SUMMARY")
 
-    print("\n TRIP DETAILS")
-    print("-" * 35)
+    print_section("TRIP DETAILS")
+
     with open("trips.txt", "r") as file:
-        trip_data=file.read()
+        lines=file.readlines()
 
-    if trip_data.strip()=="":
+    if len(lines)<4:
         print("\nNo trip created yet!")
+        pause()
         return
+    
+    for line in lines:
+        key,value=line.strip().split(": ")
+        print(f"{key:<12} : {value}")
 
-    print("\n JOURNAL")
-    print("-" * 35)
+    print_section("JOURNAL")
+
     with open("journal.txt", "r") as file:
-        print(file.read())
+        journal=file.read()
+    
+    if journal.strip()=="":
+        print("No journal entries yet.")
+    else:
+        print(journal)
 
-    print("\n EXPENSES")
-    print("-" * 35)
+    print_section("EXPENSES")
 
     total_spent = 0
 
     with open("expenses.txt", "r") as file:
-        for line in file:
-            print(line, end="")
-            category, amount = line.strip().split(": ")
-            total_spent += int(amount)
+        expense_lines=file.readlines()
 
-    with open("trips.txt", "r") as file:
-        lines = file.readlines()
-    
-    
+    if len(expense_lines)==0:
+        print("No expenses recorded.")
+
+    else:
+        for line in expense_lines:
+            category,amount=line.strip().split(": ")
+            print(f"{category:<15} : ₹{amount}")
+            total_spent+=int(amount)
 
     budget = int(lines[3].split(":")[1])
     remaining = budget - total_spent
 
-    print("-" * 35)
+    print("=" * 35)
     print(f"TOTAL SPENT : ₹{total_spent}")
     print(f"REMAINING   : ₹{remaining}")
-    print("=" * 35)
+    
+    print("="*35)
+    pause()
 
 def search_journal():
     keyword=input("Enter keyword: ")
@@ -93,17 +117,21 @@ def search_journal():
     
     if content.strip()=="":
         print("\nNo journal entries found!")
+        pause()
         return
     
     entries=content.split("Day ")
     found=False
     for entry in entries:
         if keyword.lower() in entry.lower():
+            print("-"*40)
             print("Day "+entry)
             print()
             found=True
     if not found:
         print("No matching entries found.")
+
+    pause()
     
 def view_statistics():
     total_spent=0
@@ -128,8 +156,8 @@ def view_statistics():
 
     if len(trip_lines)<4:
         print("\nNo trip created yet!")
+        pause()
         return
-    budget=int(trip_lines[3].split(":")[1])
     
     budget=int(trip_lines[3].split(":")[1])
     remaining=budget-total_spent
@@ -144,17 +172,30 @@ def view_statistics():
 
     journal_entries=journal_content.count("Day ")
 
-    print("\n"+"="*40)
-    print("            STATISTICS")
-    print("="*40)
+    print_header("STATISTICS")
+
     print(f"Budget           : ₹{budget}")
     print(f"Total Spent      : ₹{total_spent}")
     print(f"Remaining Budget : ₹{remaining}")
+
+    print("-" * 40)
     print(f"Budget Used      : {percentage_used:.1f}%")
-    print(f"Biggest Expense  : {biggest_category}(₹{biggest_expense})")
+
+    filled=int(percentage_used//5)
+    bar="█"*filled+"-"*(20-filled)
+    print(f"[{bar}]")
+    print("-" * 40)
+
+    if biggest_expense==0:
+        print("Biggest Expense  : None")
+    else:
+        print(f"Biggest Expense  : {biggest_category} (₹{biggest_expense})")
+
     print(f"Expense Entries  : {len(expense_lines)}")
     print(f"Journal Entries  : {journal_entries}")
     print("="*40)
+
+    pause()
             
 def export_report():
     total_spent=0
@@ -177,7 +218,9 @@ def export_report():
         trip_lines=file.readlines()   
 
     if len(trip_lines)<4:
-        print("\nNo trip created yet!")     
+        print("\nNo trip created yet!")  
+        pause()
+        return   
     
     budget=int(trip_lines[3].split(":")[1])
     remaining=budget-total_spent
@@ -202,20 +245,41 @@ def export_report():
 
         report.write("JOURNAL\n")
         report.write("-"*40+"\n")
-        report.write(journal_content)
+
+        if journal_content.strip()=="":
+            report.write("No journal entries yet.\n")
+        else:
+            report.write(journal_content)
+        
         report.write("\n")
 
         report.write("EXPENSES\n")
         report.write("-"*40+"\n")
-        report.writelines(expense_lines)
+        
+        if len(expense_lines)==0:
+            report.write("No expenses recorded.\n")
+        else:
+            report.writelines(expense_lines)
+
         report.write("\n")
 
         report.write("STATISTICS\n")
         report.write("-"*40+"\n")
         report.write(f"Total Spent      : ₹{total_spent}\n")
         report.write(f"Remaining Budget : ₹{remaining}\n")
+
         report.write(f"Budget Used      : {percentage_used:.1f}%\n")
-        report.write(f"Biggest Expense  : {biggest_category}(₹{biggest_expense})\n")
+        filled=int(percentage_used//5)
+        bar="█"*filled+"-"*(20-filled)
+        report.write(f"[{bar}]\n")
+        report.write("-"*40+"\n")
+
+        if biggest_expense==0:
+            report.write("Biggest Expense  : None\n")
+        else:
+             report.write(f"Biggest Expense  : {biggest_category} (₹{biggest_expense})\n")
+        report.write(f"Expense Entries  : {len(expense_lines)}\n")
+        report.write(f"Journal Entries  : {journal_content.count('Day ')}\n")
 
         report.write("\n")
         report.write("="*40+"\n")
@@ -226,6 +290,7 @@ def export_report():
 
     with open("report.txt","r",encoding="utf-8")as report:
         print(report.read())
+        pause()
 
 def delete_expense():
     with open("expenses.txt","r")as file:
@@ -233,25 +298,21 @@ def delete_expense():
     
     if len(expense_lines)==0:
         print("\nNo expenses found!")
+        pause()
         return
 
-    print("\nEXPENSES")
-    print("-"*35)
+    print_section("EXPENSES")
 
     for i,line in enumerate(expense_lines,start=1):
-        print(f"{i}.{line}",end="")
+        category,amount=line.strip().split(": ")
+        print(f"{i}. {category:<15} : ₹{amount}")
     
-    print("\nEXPENSES")
-    print("-"*35)
-
-    for i,line in enumerate(expense_lines,start=1):
-        print(f"{i}. {line}",end="")
     
     while True:
         try:
             number=int(input("\nEnter expense number to delete: "))
             
-            if i<=number<=len(expense_lines):
+            if 1<=number<=len(expense_lines):
                 break
             else:
                 print("Invalid expense number!")
@@ -263,10 +324,25 @@ def delete_expense():
         file.writelines(expense_lines)
 
     print("\nExpense deleted successfully!")
+    pause()
+
+def print_header(title):
+    print("\n"+"="*40)
+    print(title.center(40))
+    print("="*40)
+
+def print_section(title):
+    print("\n"+title)
+    print("-"*40)
+
+def clear_screen():
+    os.system("cls")
 
 
-while True:    
-    print("========== WANDERLOG ==========")
+while True:   
+    clear_screen() 
+    print_header("WANDERLOG")
+
     print("1. Create Trip")
     print("2. Add Journal Entry")
     print("3. Add Expense")
@@ -274,8 +350,10 @@ while True:
     print("5. Search Journal Entries")
     print("6. View Statistics")
     print("7. Export Trip Report")
-    print("8. Delete Expenese")
+    print("8. Delete Expense")
     print("9. Exit")
+
+    print("=" * 40)
 
     choice=input('Choose an option: ')
 

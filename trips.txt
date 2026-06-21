@@ -1,4 +1,4 @@
-Destination: Kollam
-Start Date: 26-06-2026
-Days: 5
+Destination: Kochi
+Start Date: 26-05-2026
+Days: 3
 Budget: 10000
