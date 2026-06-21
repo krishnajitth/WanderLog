@@ -72,3 +72,13 @@
 - Calculated budget usage percentage.
 - Found biggest expense category.
 - Counted journal and expense entries.
+
+### Export Trip Report
+
+- Added report export feature.
+- Generated report.txt containing:
+  - Trip details
+  - Journal entries
+  - Expenses
+  - Statistics
+- Learned file writing and UTF-8 encoding.
