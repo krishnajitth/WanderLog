@@ -89,7 +89,51 @@ def search_journal():
             print()
             found=True
     if not found:
-        print("No matching entries found.")5
+        print("No matching entries found.")
+    
+def view_statistics():
+    total_spent=0
+    biggest_expense=0
+    biggest_category=""
+
+    with open("expenses.txt","r") as file:
+        expense_lines=file.readlines()
+    
+    for line in expense_lines:
+        category,amount=line.strip().split(": ")
+        amount=int(amount)
+
+        total_spent+=amount
+
+        if amount>biggest_expense:
+            biggest_expense=amount
+            biggest_category=category
+    
+    with open("trips.txt","r")as file:
+        trip_lines=file.readlines()
+    
+    budget=int(trip_lines[3].split(":")[1])
+    remaining=budget-total_spent
+    percentage_used=(total_spent/budget)*100
+
+    with open("journal.txt","r") as file:
+        journal_content=file.read()
+
+    journal_entries=journal_content.count("Day ")
+
+    print("\n"+"="*40)
+    print("            STATISTICS")
+    print("="*40)
+    print(f"Budget           : ₹{budget}")
+    print(f"Total Spent      : ₹{total_spent}")
+    print(f"Remaining Budget : ₹{remaining}")
+    print(f"Budget Used      : {percentage_used:.1f}%")
+    print(f"Biggest Expense  : {biggest_category}(₹{biggest_expense})")
+    print(f"Expense Entries  : {len(expense_lines)}")
+    print(f"Journal Entries  : {journal_entries}")
+    print("="*40)
+            
+
             
 
 
@@ -102,7 +146,8 @@ while True:
     print("3. Add Expense")
     print("4. View Trip Summary")
     print("5. Search Journal Entries")
-    print("6. Exit")
+    print("6. View Statistics")
+    print("7. Exit")
 
     choice=input('Choose an option: ')
 
@@ -123,6 +168,9 @@ while True:
         search_journal()
 
     elif choice=="6":
+        view_statistics()
+
+    elif choice=="7":
         print("\nThank you for using WanderLog!")
         break
 

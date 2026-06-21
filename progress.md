@@ -64,3 +64,11 @@
 - Added keyword search for journal entries.
 - Implemented case-insensitive search.
 - Display only matching entries.
+
+### Statistics
+
+- Added statistics page.
+- Calculated total spent and remaining budget.
+- Calculated budget usage percentage.
+- Found biggest expense category.
+- Counted journal and expense entries.
