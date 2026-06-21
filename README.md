@@ -11,13 +11,13 @@ WanderLog helps travelers organize trips, record memories, track expenses, manag
 ## 📸 Screenshots
 
 ### Main Menu
-![Main Menu](assets/menu.png)
+![Main Menu](assets/Menu.png)
 
 ### Statistics
-![Statistics](assets/statistics.png)
+![Statistics](assets/Statistics.png)
 
 ### Exported Report
-![Report](assets/report.png)
+![Report](assets/Report.png)
 
 ---
 
