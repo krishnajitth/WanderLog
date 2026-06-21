@@ -207,7 +207,16 @@ def delete_expense():
     for i,line in enumerate(expense_lines,start=1):
         print(f"{i}. {line}",end="")
     
-    number=int(input("\nEnter expense number to delete: "))
+    while True:
+        try:
+            number=int(input("\nEnter expense number to delete: "))
+            
+            if i<=number<=len(expense_lines):
+                break
+            else:
+                print("Invalid expense number!")
+        except ValueError:
+            print("Please enter a valid number!")
     expense_lines.pop(number-1)
 
     with open("expenses.txt","w")as file:

@@ -90,3 +90,12 @@
 - Removed selected expense using pop().
 - Updated expenses.txt automatically.
 - Learned enumerate() and file rewriting.
+
+### Delete Expense
+
+- Added delete expense feature.
+- Displayed expenses with numbering.
+- Removed selected expense using pop().
+- Updated expenses.txt automatically.
+- Added validation for invalid expense numbers.
+- Learned enumerate() and file rewriting.
