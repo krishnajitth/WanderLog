@@ -1,55 +1,123 @@
-# WanderLog
+# 🌍 WanderLog
 
-WanderLog is a command-line trip management application built with Python. It helps users organize trips, maintain travel journals, track expenses, and generate reports.
+A powerful command-line travel journal and expense tracker built with Python.
 
-## Features
+WanderLog helps travelers organize trips, record memories, track expenses, manage budgets, and export complete travel reports.
+
+---
+
+## 📸 Screenshots
+
+## 📸 Screenshots
+
+### Main Menu
+![Main Menu](assets/menu.png)
+
+### Statistics
+![Statistics](assets/statistics.png)
+
+### Exported Report
+![Report](assets/report.png)
+
+---
+
+## ✨ Features
+
+### 🧳 Trip Management
 
 * Create a new trip
-* Add journal entries
-* Edit journal entries
-* Search journal entries
-* Add expenses
+* Store destination, start date, duration, and budget
+
+### 📔 Journal System
+
+* Add journal entries for each day
+* Search entries using keywords
+* Edit existing journal entries
+
+### 💰 Expense Tracking
+
+* Add expenses with categories
 * Delete expenses
-* View trip summary
-* View statistics with budget usage bar
-* Export trip report to a text file
-* Persistent storage using text files
+* Automatically calculate total spent and remaining budget
 
-## Files Used
+### 📊 Statistics
 
-* `trips.txt` – Stores trip details
-* `journal.txt` – Stores journal entries
-* `expenses.txt` – Stores expense records
-* `report.txt` – Stores exported reports
+* Budget usage percentage
+* Budget progress bar
+* Biggest expense
+* Number of expense entries
+* Number of journal entries
 
-## Technologies Used
+### 📄 Report Export
+
+Generate a complete travel report containing:
+
+* Trip details
+* Journal entries
+* Expenses
+* Statistics
+* Budget progress visualization
+
+---
+
+## 🛠 Built With
 
 * Python
 * File Handling
 * Functions
-* Loops and Conditionals
+* Loops
 * Exception Handling
+* Lists
+* String Manipulation
 
-## How to Run
+---
+
+## 🚀 How to Run
+
+Clone the repository:
 
 ```bash
-python wanderlog.py
+git clone https://github.com/krishnajitth/WanderLog.git
 ```
 
-## Project Status
+Move into the folder:
 
-WanderLog v1.0 ✅ Completed
-
-## Learning Outcomes
-
-This project helped me learn:
-
-* File handling
-* Functions and modular programming
-* Input validation
-* Searching and editing data
-* Data persistence
-* Building complete command-line applications
-
+```bash
+cd WanderLog
 ```
+
+Run the program:
+
+```bash
+python main.py
 ```
+
+---
+
+## 📂 Files
+
+| File         | Purpose                 |
+| ------------ | ----------------------- |
+| trips.txt    | Stores trip information |
+| journal.txt  | Stores journal entries  |
+| expenses.txt | Stores expenses         |
+| report.txt   | Stores exported reports |
+| main.py      | Main application        |
+
+---
+
+## 🔮 Future Plans (WanderLog V3)
+
+* GUI with Tkinter
+* Charts and analytics
+* Photo support
+* PDF report export
+* Improved interface
+
+---
+
+## 👨‍💻 Author
+
+**Krishnajith**
+
+Built as part of **Hack Club Summer of Making** 🚀
