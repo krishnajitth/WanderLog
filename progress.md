@@ -108,3 +108,43 @@
 - Handled missing trip data.
 - Prevented division by zero.
 - Automatically recreated missing files.
+
+### Edit Journal Entry
+
+* Added edit journal feature.
+* Displayed journal entries with numbering.
+* Allowed users to select and modify existing entries.
+* Updated journal.txt automatically after editing.
+* Preserved day numbers while changing experiences.
+* Learned list manipulation and file rewriting.
+
+### Export Trip Report
+
+* Added report export feature.
+* Generated report.txt automatically.
+* Included trip details, journal entries, expenses, and statistics.
+* Added budget usage progress bar to the report.
+* Displayed exported report contents in the terminal.
+* Learned file writing and report generation.
+
+### User Interface Improvements
+
+* Added pause() function to prevent screens from disappearing.
+* Added clear_screen() for a cleaner interface.
+* Improved formatting and alignment of output.
+* Learned code reuse through helper functions.
+
+### Data Management Improvements
+
+* Cleared previous journal, expense, and report data when creating a new trip.
+* Added handling for empty files and missing data.
+* Prevented crashes and improved user experience.
+* Learned defensive programming and input validation.
+
+### WanderLog v1.0 Completed
+
+* Finished a complete trip management application.
+* Implemented journaling, expense tracking, statistics, report generation, editing, and deletion features.
+* Learned file handling, functions, loops, validation, searching, formatting, and data persistence.
+* Built a complete command-line application from scratch.
+

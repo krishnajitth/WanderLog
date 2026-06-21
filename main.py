@@ -335,8 +335,48 @@ def print_section(title):
     print("\n"+title)
     print("-"*40)
 
+def edit_journal():
+    with open("journal.txt","r")as file:
+        content=file.read()
+
+    if content.strip()=="":
+        print("\nNo journal entries found!")
+        pause()
+        return
+    
+    entries=content.strip().split("\n\n")
+
+    print_section("JOURNAL ENTRIES")
+
+    for i,entry in enumerate(entries,start=1):
+        print(f"{i}. {entry.splitlines()[0]}")
+
+    while True:
+        try:
+            number=int(input("\nEnter entry number to edit: "))
+            if 1<=number <=len(entries):
+                break
+            else:
+                print("Invalid number!")
+        except ValueError:
+            print("Please enter a valid number!")
+    print("\nCurrent Entry:")
+    print(entries[number-1])
+
+    new_text=input("\nWrite new experience: ")
+
+    day_line=entries[number-1].splitlines()[0]
+    entries[number-1]=day_line+"\n"+new_text
+
+    with open("journal.txt","w")as file:
+        file.write("\n\n".join(entries))
+
+    print("\nJournal entry updated successfully!")
+    pause()
+
 def clear_screen():
     os.system("cls")
+
 
 
 while True:   
@@ -350,8 +390,9 @@ while True:
     print("5. Search Journal Entries")
     print("6. View Statistics")
     print("7. Export Trip Report")
-    print("8. Delete Expense")
-    print("9. Exit")
+    print("8. Edit Journal Entry")
+    print("9. Delete Expense")
+    print("10. Exit")
 
     print("=" * 40)
 
@@ -380,9 +421,12 @@ while True:
         export_report()
 
     elif choice=="8":
-        delete_expense()
+        edit_journal()
 
     elif choice=="9":
+        delete_expense()
+
+    elif choice=="10":
         print("\nThank you for using WanderLog!")
         break
 
