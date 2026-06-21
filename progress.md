@@ -82,3 +82,11 @@
   - Expenses
   - Statistics
 - Learned file writing and UTF-8 encoding.
+
+### Delete Expense
+
+- Added delete expense feature.
+- Displayed expenses with numbering.
+- Removed selected expense using pop().
+- Updated expenses.txt automatically.
+- Learned enumerate() and file rewriting.

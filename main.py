@@ -197,6 +197,24 @@ def export_report():
     with open("report.txt","r",encoding="utf-8")as report:
         print(report.read())
 
+def delete_expense():
+    with open("expenses.txt","r")as file:
+        expense_lines=file.readlines()
+    
+    print("\nEXPENSES")
+    print("-"*35)
+
+    for i,line in enumerate(expense_lines,start=1):
+        print(f"{i}. {line}",end="")
+    
+    number=int(input("\nEnter expense number to delete: "))
+    expense_lines.pop(number-1)
+
+    with open("expenses.txt","w")as file:
+        file.writelines(expense_lines)
+
+    print("\nExpense deleted successfully!")
+
 
 while True:    
     print("========== WANDERLOG ==========")
@@ -207,7 +225,8 @@ while True:
     print("5. Search Journal Entries")
     print("6. View Statistics")
     print("7. Export Trip Report")
-    print("8. Exit")
+    print("8. Delete Expenese")
+    print("9. Exit")
 
     choice=input('Choose an option: ')
 
@@ -234,6 +253,9 @@ while True:
         export_report()
 
     elif choice=="8":
+        delete_expense()
+
+    elif choice=="9":
         print("\nThank you for using WanderLog!")
         break
 
