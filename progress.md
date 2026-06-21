@@ -99,3 +99,12 @@
 - Updated expenses.txt automatically.
 - Added validation for invalid expense numbers.
 - Learned enumerate() and file rewriting.
+
+### Error Handling and Robustness
+
+- Added invalid menu choice handling.
+- Prevented deletion from empty expense list.
+- Prevented searching empty journal.
+- Handled missing trip data.
+- Prevented division by zero.
+- Automatically recreated missing files.

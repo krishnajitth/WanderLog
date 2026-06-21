@@ -1,3 +1,7 @@
+for filename in["trips.txt","journal.txt","expenses.txt"]:
+    with open(filename,"a"):
+        pass
+
 def create_trip():
     destination=input("Destination: ")
     start_date=input("Start Date: ")
@@ -44,7 +48,11 @@ def view_summary():
     print("\n TRIP DETAILS")
     print("-" * 35)
     with open("trips.txt", "r") as file:
-        print(file.read())
+        trip_data=file.read()
+
+    if trip_data.strip()=="":
+        print("\nNo trip created yet!")
+        return
 
     print("\n JOURNAL")
     print("-" * 35)
@@ -64,6 +72,8 @@ def view_summary():
 
     with open("trips.txt", "r") as file:
         lines = file.readlines()
+    
+    
 
     budget = int(lines[3].split(":")[1])
     remaining = budget - total_spent
@@ -80,6 +90,10 @@ def search_journal():
     print("-"*35)
     with open("journal.txt","r") as file:
         content=file.read()
+    
+    if content.strip()=="":
+        print("\nNo journal entries found!")
+        return
     
     entries=content.split("Day ")
     found=False
@@ -111,10 +125,19 @@ def view_statistics():
     
     with open("trips.txt","r")as file:
         trip_lines=file.readlines()
+
+    if len(trip_lines)<4:
+        print("\nNo trip created yet!")
+        return
+    budget=int(trip_lines[3].split(":")[1])
     
     budget=int(trip_lines[3].split(":")[1])
     remaining=budget-total_spent
-    percentage_used=(total_spent/budget)*100
+    
+    if budget==0:
+        percentage_used=0
+    else:
+        percentage_used=(total_spent/budget)*100
 
     with open("journal.txt","r") as file:
         journal_content=file.read()
@@ -151,11 +174,18 @@ def export_report():
             biggest_category=category
 
     with open("trips.txt","r")as file:
-        trip_lines=file.readlines()        
+        trip_lines=file.readlines()   
+
+    if len(trip_lines)<4:
+        print("\nNo trip created yet!")     
     
     budget=int(trip_lines[3].split(":")[1])
     remaining=budget-total_spent
-    percentage_used=(total_spent/budget)*100
+    
+    if budget==0:
+        percentage_used=0
+    else:
+        percentage_used=(total_spent/budget)*100
 
     with open("journal.txt","r")as file:
         journal_content=file.read()
@@ -200,6 +230,16 @@ def export_report():
 def delete_expense():
     with open("expenses.txt","r")as file:
         expense_lines=file.readlines()
+    
+    if len(expense_lines)==0:
+        print("\nNo expenses found!")
+        return
+
+    print("\nEXPENSES")
+    print("-"*35)
+
+    for i,line in enumerate(expense_lines,start=1):
+        print(f"{i}.{line}",end="")
     
     print("\nEXPENSES")
     print("-"*35)
@@ -267,6 +307,9 @@ while True:
     elif choice=="9":
         print("\nThank you for using WanderLog!")
         break
+
+    else:
+        print("\nInvalid choice! Please choose from 1-9.")
 
 
 
