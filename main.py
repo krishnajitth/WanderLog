@@ -73,6 +73,25 @@ def view_summary():
     print(f"REMAINING   : ₹{remaining}")
     print("=" * 35)
 
+def search_journal():
+    keyword=input("Enter keyword: ")
+
+    print("\nMATCHING ENTRIES")
+    print("-"*35)
+    with open("journal.txt","r") as file:
+        content=file.read()
+    
+    entries=content.split("Day ")
+    found=False
+    for entry in entries:
+        if keyword.lower() in entry.lower():
+            print("Day "+entry)
+            print()
+            found=True
+    if not found:
+        print("No matching entries found.")5
+            
+
 
 
 
@@ -82,7 +101,8 @@ while True:
     print("2. Add Journal Entry")
     print("3. Add Expense")
     print("4. View Trip Summary")
-    print("5. Exit")
+    print("5. Search Journal Entries")
+    print("6. Exit")
 
     choice=input('Choose an option: ')
 
@@ -100,6 +120,9 @@ while True:
         view_summary()
 
     elif choice=="5":
+        search_journal()
+
+    elif choice=="6":
         print("\nThank you for using WanderLog!")
         break
 

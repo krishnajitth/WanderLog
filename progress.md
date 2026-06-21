@@ -58,3 +58,9 @@
 - Calculated remaining budget.
 - Added input validation for expense amounts.
 - Improved summary formatting.
+
+### Search Journal Entries
+
+- Added keyword search for journal entries.
+- Implemented case-insensitive search.
+- Display only matching entries.
